@@ -1,4 +1,5 @@
 const CONSTANTS = require("../../data/Constants.json")
+const config = require("../../config.json")
 const BaseFunctions = require("../../utils/BaseFunctions.js")
 const Discord = require("discord.js")
 
@@ -46,13 +47,13 @@ class Stats {
 
     embed.setTitle(`${player} [${Math.floor(combatLevel)}]`)
     for(let i = 0; i < CONSTANTS.SKILLS.length; i++){
-      let emoji = this.bot.emojis.find(emoji => emoji.name == CONSTANTS.SKILLS[i] && emoji.guild.id == '426107164650766357')
+      let emoji = this.bot.emojis.find(emoji => emoji.name == config.SKILL_EMOJIS[CONSTANTS.SKILLS[i]] && emoji.guild.id == config.EMOJI_SERVER)
       let xp = (stats[CONSTANTS.SKILLS[i]]) ? BaseFunctions.formatNumber(stats[CONSTANTS.SKILLS[i]].toFixed(1).toString()) : 0
       embed.addField(`${emoji} ${BaseFunctions.capitalizeString(CONSTANTS.SKILLS[i])} [${BaseFunctions.calculateLevel(stats[CONSTANTS.SKILLS[i]])}]`, xp, true)
     }
 
-    let totalEmoji = this.bot.emojis.find(emoji => emoji.name == "stats" && emoji.guild.id == '426107164650766357')
-    let questingEmoji = this.bot.emojis.find(emoji => emoji.name == "questing" && emoji.guild.id == '426107164650766357')
+    let totalEmoji = this.bot.emojis.find(emoji => emoji.name == config.SKILL_EMOJIS["stats"] && emoji.guild.id == config.EMOJI_SERVER)
+    let questingEmoji = this.bot.emojis.find(emoji => emoji.name == config.SKILL_EMOJIS["questing"] && emoji.guild.id == config.EMOJI_SERVER)
     embed.addField(`${questingEmoji} Questing`, stats["questing"] || 0, true)
     embed.addBlankField(true)
     embed.addField(`${totalEmoji} Total XP [${totalLevel}]`, BaseFunctions.formatNumber(totalXp.toFixed(1)), true)
