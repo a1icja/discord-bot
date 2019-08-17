@@ -1,0 +1,16 @@
+{
+  "name": "minescape",
+  "version": "1.0.0",
+  "description": "Minescape bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "mathjs": "^5.8.0",
+    "request": "^2.88.0"
+  }
+}

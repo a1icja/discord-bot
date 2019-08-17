@@ -1,0 +1,19 @@
+class CLASS_NAME {
+  constructor(bot, api){
+    this.bot = bot;
+    this.api = api;
+
+    // Data
+    this.name = "COMMAND_NAME"
+    this.description = "DESCRIPTION"
+    this.usage = "COMMAND_NAME USAGE"
+    this.example = "COMMAND_NAME EXAMPLE"
+    this.aliases = [alias1, alias2, ...]
+  }
+
+  execute(message, args){
+
+  }
+}
+
+module.exports = CLASS_NAME

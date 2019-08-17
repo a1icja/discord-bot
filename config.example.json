@@ -1,0 +1,13 @@
+{
+    "API_KEY": "just a filler incase you ever need one",
+    "DISCORD_TOKEN": "discord bot token",
+    "prefix": "!",
+    "COLOR": "00bfff",
+    "ADMINS": [
+      "107790082240458752",
+      "107958143832555520",
+      "107809184350736384",
+      "236798578734006272"
+    ]
+  }
+  
