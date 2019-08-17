@@ -11,13 +11,11 @@ const funcs = {
   },
   calculateCombatLevel: (skills) => {
     let combatLevel = 0
-    const COMBAT_SKILLS_4 = ["defence", "strength", "attack", "constitution", "prayer", "magic", "ranged"]
-    const COMBAT_SKILLS_9 = []
+    const COMBAT_SKILLS = ["defence", "strength", "attack", "constitution", "magic", "ranged", "prayer"]
     for(let i in skills){
-      if(COMBAT_SKILLS_4.includes(i)) combatLevel += (funcs.calculateLevel(skills[i]) / 7)
-      if(COMBAT_SKILLS_9.includes(i)) combatLevel += (funcs.calculateLevel(skills[i]) / 9)
+      if(COMBAT_SKILLS.includes(i)) combatLevel += funcs.calculateLevel(skills[i])
     }
-    return Math.floor(combatLevel)
+    return Math.floor(combatLevel/7)
   }
 }
 
