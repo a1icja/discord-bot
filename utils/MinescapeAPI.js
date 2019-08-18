@@ -14,6 +14,11 @@ class MinescapeAPI extends EventEmitter { // Extends an event emitter cause if w
     this.key = key;
   }
 
+  /**
+   * Gets a players MC UUID from their name
+   * @param {String} username The player's minecraft username
+   * @returns {Promise<String>} The player's full (untrimmed) UUID
+   */
   _getUUID(username = "") {
     return new Promise((resolve, reject) => {
       let options = {
@@ -42,6 +47,12 @@ class MinescapeAPI extends EventEmitter { // Extends an event emitter cause if w
     })
   }
 
+  /**
+   * Get's the player's Gameslabs ID
+   * @param {String} username The player's username to find
+   * @param {Number} pos The profile to find 
+   * @returns {Promise<String>} A string of the user's minescape ID
+   */
   _getProfileID(username, pos = "default") {
     return new Promise(async (resolve, reject) => {
       let UUID = await this._getUUID(username).catch(e => reject(e))
@@ -77,7 +88,8 @@ class MinescapeAPI extends EventEmitter { // Extends an event emitter cause if w
 
   /**
    * Gets the user's stats. Can use either params
-   * @param  {String} userName The username to get the stats of
+   * @param {String} userName The username to get the stats of
+   * @param {String} profile The profile to get the stats of
    * @return {Promise<Object>} An Object of the user's stats
    */
   getStats(username = "", profile = "default"){

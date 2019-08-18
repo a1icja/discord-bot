@@ -16,6 +16,22 @@ class Calc {
   }
 
   execute(message, args) {
+    /*
+      I'd say a lot of the code in here is pretty simple to read but overall kinda weird: Let me explain myself...
+      So we declare all of our variables so that they can be accessed within the switch statement, just some scoping things. And then we declare a step variable, this is what checks the steps
+      So then we make what's called a MessageCollector which takes a filter, in this case just makes sure they both have the same author, and whenever that passes through it'll send an event saying "Hey I got a message"
+      That's what the collector.on("collect") is
+      Then we see which step we're on and increment it by 1 (step++).
+        We do this with a switch() case statement
+        These are just glorified if / elif / elif / elif.... else statements
+      Then throughout each step we define a variable we want to i.e. step 1 defines the skill variable to whatever the person inputs
+      The only weird part is smithing, we want them to change how they're smithing: are they just buying bars? Are they gonna sell their bars from ores? We allow them to choose
+        What we do is we add in intermidiary step: Step 1002
+        We can simply add and subtract a 1000 in order to get to this step
+        So we go from step 1 -> 1002 -> 2 and so forth like a normal command.
+        This is also expressed in xp.json where smithing has 1, 2, 3 options
+      And then collector.end basically is where we handle any caught exceptions or if the person just decides not to respond.
+    */
     let step = 0
     let skill, data, task, start, end, booster;
 

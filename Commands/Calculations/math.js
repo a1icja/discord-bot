@@ -15,6 +15,7 @@ class MathCommand {
   execute(message, args){
     let solution; // If we do let solution = ... in the try/catch then we have scoping errors.
     try {
+      // mathjs is godly
       solution = mathjs.eval(args)
     } catch {
       return message.channel.send("Computer machine broke")

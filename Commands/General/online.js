@@ -58,19 +58,25 @@ class Online {
     let online = await this.api.getOnline().catch(e => {
       console.error(e)
     })
-    
+
     if(!online) {
       return message.channel.send("Error trying to find the online players")
     }
 
     let totalOnline = 0
     let msgString = ""
+    // let server of online defines every value of array online to server
     for(let server of online) {
+      // Let's not include the dev servers, it's kinda ugly having 2 minescape
       if(!CONSTANTS.SERVERS.includes(server.game) || server.namespace != "gameslabs") break
       totalOnline += server.users.length
+      // msgString += blah is a fancy way of concatenation.
+      // It can be msgString = msgString + blah
+      // This also works for numbers as seen above
       msgString += `${server.users.length} in ${CONSTANTS.SERVER_EMOJIS[server.game]}, `
     }
 
+    // Here we prepend this string to msgString and then cut off the final space and comma from the final option (x, x, x, -> x, x, x)
     msgString = `There ${totalOnline == 1 ? "is" : "are"} currently ${totalOnline} ${totalOnline == 1 ? "player" : "players"} online:\n` + msgString.slice(0, -2)
     
     message.channel.send(msgString)
