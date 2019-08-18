@@ -150,7 +150,12 @@ class MinescapeAPI extends EventEmitter { // Extends an event emitter cause if w
         if(error){
           reject(error)
         } else {
-          resolve(JSON.parse(response.body))
+          try {
+            let body = JSON.parse(response.body)
+            return resolve(body)
+          } catch(e) {
+            return reject(e)
+          }
         }
       })
     })
@@ -170,7 +175,12 @@ class MinescapeAPI extends EventEmitter { // Extends an event emitter cause if w
         if(error){
           reject(error)
         } else {
-          resolve(JSON.parse(response.body))
+          try {
+            let body = JSON.parse(response.body)
+            return resolve(body)
+          } catch(e) {
+            return reject(e)
+          }
         }
       })
     })

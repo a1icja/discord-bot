@@ -55,7 +55,13 @@ class Online {
   } */
 
   async execute(message, args) {
-    let online = await this.api.getOnline()
+    let online = await this.api.getOnline().catch(e => {
+      console.error(e)
+    })
+    
+    if(!online) {
+      return message.channel.send("Error trying to find the online players")
+    }
 
     let totalOnline = 0
     let msgString = ""
