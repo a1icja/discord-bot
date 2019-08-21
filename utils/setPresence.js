@@ -1,6 +1,6 @@
 module.exports = async function(bot, api) {
     let responseCount = await api.getOnlineCount().catch(e => {
-        console.error(e)
+        console.log(`API Borked at ${new Date()}`)
     })
 
     if(!responseCount) {

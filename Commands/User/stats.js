@@ -20,6 +20,7 @@ class Stats {
     let player = args.split(" ")[0]
     let profile = args.split(" ")[1] || null
     if(profile) profile = parseInt(profile) - 1
+    if(!player) return message.channel.send(`Invalid args, please do ${config.prefix}stats [username]`)
 
     // Defining a variable to a message.send gives us a Message object to edit later
     let msg = await message.channel.send(`Fetching ${player}'s stats`)
