@@ -35,5 +35,7 @@ bot.on('message', (message) => {
   CommandHandler.handle(message)
 })
 
+bot.on('error', console.error);
+
 // Log in the bot
 bot.login(config.DISCORD_TOKEN)
