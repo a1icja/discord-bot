@@ -119,26 +119,24 @@ class MinescapeAPI extends EventEmitter { // Extends an event emitter cause if w
 
   /**
    * Get's the top in a skill(s)
-   * @param  {Array<String>} skills The skill(s) to search for
-   * @param  {String} [page="1"] The page to search on
+   * @param  {String} stat The stat to search for
+   * @param  {String} game The game to search out of
    * @return {Promise<Object>} An object of the top for each stat
    */
-  getTop(skills, page="1"){
+  getTop(stat, game){
     return new Promise((resolve, reject) => {
+      if(game != "minescape") {
+        if(!Constants.STAT_NAMES[stat]) return reject(`Couldn't find the stat ${stat}`)
+        stat = Constants.STAT_NAMES[stat]
+      }
+
       let options = {
         method: "GET",
-        uri: `${Constants.API_URL}/game/classic/top`,
-        qs: {
-          skills: skills.join(","),
-          page: page
-        }
+        uri: `${Constants.API_URL}/1.0.0/leaderboard/game/${Constants.API_LOCATIONS[game]}/${stat}`,
       }
-      
-      if(!options.qs.skills) delete options.qs.skills
       request(options, (error, response) => {
         if(error) return reject(error)
         let body = JSON.parse(response.body)
-        
         if(body.message){
           reject(body.message)
         } else {

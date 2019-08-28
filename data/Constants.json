@@ -48,6 +48,21 @@
     "lobby": "🏠",
     "arcade": "🎰",
     "apocalypse": "👽"
+  },
+  "API_LOCATIONS": {
+    "minescape" : "gameslabs-minescape",
+    "apocalypse" : "gameslabs-apocalypse",
+    "heroes" : "gameslabs-battle-of-the-heroes"
+  },
+  "STAT_NAMES": {
+    "total zombie kills" : "totalZombieKills",
+    "max zombie kills" : "maxZombieKills",
+    "total player kills" : "totalPlayerKills",
+    "max player kills" : "maxPlayerKills",
+    "longest life" : "longuestLife",
+    "total distance walked" : "totalDistanceWalked",
+    "player kills" : "playerKills",
+    "lives" : "lives"
   }
 }
 

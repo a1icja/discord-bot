@@ -84,9 +84,9 @@ class Calc {
               return collector.stop(`I don't think you can have ${start} xp in minescape, if you do I'd contact scip.`)
             }
 
-            if(start <= 119) {
-              let level = start
-              start = Constants.LEVELS[start - 1]
+            if(start <= 119 && start > 0) {
+              let level = parseInt(start)
+              start = Constants.LEVELS[parseInt(start) - 1]
 
               return message.channel.send(`Okay, we're starting on level ${level} which I've adjusted to be ${BaseFunctions.formatNumber(start)} XP. Now may you please tell me what level / XP we're finishing at?`)
             }
@@ -112,9 +112,9 @@ class Calc {
               return false
             }
   
-            if(end <= 120) {
-              let level = end
-              end = Constants.LEVELS[end - 1]
+            if(end <= 120 && end > 0) {
+              let level = parseInt(end)
+              end = Constants.LEVELS[parseInt(end) - 1]
 
               if(_checkNegative(end, start)) return
 
