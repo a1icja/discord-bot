@@ -24,11 +24,17 @@ class Top {
     for(let i = 0; i < top.length; i++) {
       if(i == 9) embed.addBlankField(true)
       let player = top[i]
-      if(game == "minescape" && stat != "combat" && stat != "xp") {
-        embed.addField(`${i+1} - ${player.user.name}`, 
-        `**[${BaseFunctions.calculateLevel(player.result.toFixed(1))}]** - ${BaseFunctions.formatNumber(player.result.toFixed(1))}`, true)
+      if(game == "minescape" && stat != "xp") {
+        if(stat == "combat") {
+          let combatLevel = BaseFunctions.calculateCombatLevel(player)
+          embed.addField(`${i+1} - ${player.user.name}`, 
+          `**[${combatLevel}]** - ${BaseFunctions.formatNumber(Object.values(player).reduce((total, toAdd) => isNaN(toAdd) ? total : total + toAdd).toFixed(1))}`, true)
+        } else {
+          embed.addField(`${i+1} - ${player.user.name}`, 
+          `**[${BaseFunctions.calculateLevel(player.result.toFixed(1))}]** - ${BaseFunctions.formatNumber(player.result.toFixed(1))}`, true)
+        }
       } else {
-        embed.addField(`${i+1} - ${player.user.name}`, BaseFunctions.formatNumber(player.result.toFixed(1)), true)
+        embed.addField(`${i+1} - ${player.user.name}`, BaseFunctions.formatNumber(player.result ? player.result.toFixed(0) : 0), true)
       }
     }
 
