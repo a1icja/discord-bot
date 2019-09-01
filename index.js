@@ -17,10 +17,7 @@ const setPresence = require('./utils/setPresence')
 
 // This tells us when the bot has booted up. Also should show that there are no runtime errors
 bot.on('ready', async () => {
-  let { calculateLevel } = require('./utils/BaseFunctions')
-  console.log(calculateLevel(500))
-  console.log("We are ready")
-  console.log(await MinescapeAPI._getProfileID("RonDeSantis").catch(e => console.error(e)))
+  console.log(`Bot is being sent out to ${bot.users.size} users over ${bot.guilds.size} servers`)
   setPresence(bot, MinescapeAPI)
   setInterval(() => {
     setPresence(bot, MinescapeAPI)
