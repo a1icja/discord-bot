@@ -68,7 +68,7 @@ class Online {
     // let server of online defines every value of array online to server
     for(let server of online) {
       // Let's not include the dev servers, it's kinda ugly having 2 minescape
-      if(!CONSTANTS.SERVERS.includes(server.game) || server.namespace != "gameslabs") break
+      if(!CONSTANTS.SERVERS.includes(server.game) || server.namespace != "gameslabs") continue
       totalOnline += server.users.length
       // msgString += blah is a fancy way of concatenation.
       // It can be msgString = msgString + blah
