@@ -42,11 +42,11 @@
     "battle-of-the-heroes"
   ],
   "SERVER_EMOJIS": {
-    "minescape": "<:minescapeem:607617220574576660>",
-    "lobby": "🏠",
-    "arcade": "🎰",
-    "apocalypse": "👽",
-    "battle-of-the-heroes" : "⚔"
+    "minescape": "minescape",
+    "lobby": "lobby",
+    "arcade": "arcade",
+    "apocalypse": "apocalypse",
+    "battle-of-the-heroes" : "battle of the heroes"
   },
   "API_LOCATIONS": {
     "minescape" : "gameslabs-minescape",
