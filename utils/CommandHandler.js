@@ -78,6 +78,22 @@ class CommandHandler {
     let commandString = content.shift().slice(config.prefix.length).toLowerCase()
     // And this would return the JoeyB portion
     let args = content.join(' ')
+    // Lets check if it's blacklisted/whitelisted
+    if(config.BLACKLIST[message.channel.id] && this.bot.commands[commandString]) {
+      if(config.BLACKLIST[message.channel.id].includes(commandString)) return
+      for(let alias of this.bot.commands[commandString].aliases) {
+        if(alias.toLowerCase() == commandString) return
+      }
+    }
+    if(config.WHITELIST[message.channel.id] && this.bot.commands[commandString]) {
+      if(!config.WHITELIST[message.channel.id].includes(commandString) && !config.WHITELIST[message.channel.id].includes(this.bot.commands[commandString].name.toLowerCase())) {
+        if(!this.bot.commands[commandString].aliases[0]) return
+        for(let i in this.bot.commands[commandString].aliases) {
+          if(config.WHITELIST[message.channel.id].includes(this.bot.commands[commandString].aliases[i].toLowerCase())) break
+          if(i == this.bot.commands[commandString].aliases.length - 1) return
+        }
+      }
+    }
     // And now we get the Command Classs in bot.commands and then run it
     if(this.bot.commands[commandString]) this.bot.commands[commandString].execute(message, args)
   }

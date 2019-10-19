@@ -24,6 +24,18 @@
     "stats" : "stats",
     "questing" : "questing"
   },
+  "BLACKLIST" : {
+    "insert channel ID here" : [
+      "command 1",
+      "command 2"
+    ]
+  },
+  "WHITELIST" : {
+    "insert channel ID here" : [
+      "comamnd 1",
+      "command 2"
+    ]
+  },
   "EMOJI_SERVER" : "any server with all of the emojis",
   "API_KEY": "just a filler incase you ever need one",
   "DISCORD_TOKEN": "discord bot token",
