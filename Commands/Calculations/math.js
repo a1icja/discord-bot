@@ -13,12 +13,13 @@ class MathCommand {
   }
 
   execute(message, args){
+    if(!args) return message.channel.send("Please do `!help math` for some more help")
     let solution; // If we do let solution = ... in the try/catch then we have scoping errors.
     try {
       // mathjs is godly
       solution = mathjs.eval(args)
     } catch {
-      return message.channel.send("Computer machine broke")
+      return message.channel.send("Computer machine broke, try a more simple problem or `!help math` for more help")
     }
 
     const embed = new RichEmbed()
