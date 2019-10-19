@@ -1,4 +1,5 @@
 const CONSTANTS = require('../../data/Constants.json')
+const BaseFunctions = require("../../utils/BaseFunctions")
 
 class Online {
   constructor(bot, api){
@@ -64,16 +65,24 @@ class Online {
     }
 
     let totalOnline = 0
+    let totals = {}
     let msgString = ""
     // let server of online defines every value of array online to server
     for(let server of online) {
-      // Let's not include the dev servers, it's kinda ugly having 2 minescape
-      if(!CONSTANTS.SERVERS.includes(server.game) || server.namespace != "gameslabs") continue
+      // Let's not include the dev servers or member-less servers
+      if(server.namespace != "gameslabs" || server.users.length == 0) continue
+
       totalOnline += server.users.length
-      // msgString += blah is a fancy way of concatenation.
-      // It can be msgString = msgString + blah
-      // This also works for numbers as seen above
-      msgString += `${server.users.length} in ${CONSTANTS.SERVER_EMOJIS[server.game]}, `
+
+      if(totals[server.game]) {
+        totals[server.game] += server.users.length
+      } else {
+        totals[server.game] = server.users.length
+      }
+    }
+
+    for(let game of Object.keys(totals)) {
+      msgString += `${totals[game]} in ${BaseFunctions.capitalizeString(game.replace(/-/g, " "))}, `
     }
 
     // Here we prepend this string to msgString and then cut off the final space and comma from the final option (x, x, x, -> x, x, x)
