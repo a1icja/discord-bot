@@ -5,6 +5,21 @@ const funcs = {
    * @param x The number to formate
    */
   formatNumber: (x) => x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","),
+
+  /**
+   * Formats a number to mm:ss:ms
+   * @param x The number to formate
+   */
+  formatTime: (duration) => {
+    let milliseconds = parseInt(duration % 1000)
+    let seconds = parseInt((duration / 1000) % 60)
+    let minutes = parseInt((duration / (1000*60)) % 60)
+
+    minutes = (minutes < 10) ? "0" + minutes : minutes
+    seconds = (seconds < 10) ? "0" + seconds : seconds
+
+    return  minutes + ":" + seconds + "." + milliseconds
+  },
   /**
    * Capitilizes a String
    * @param x The string to capitilize

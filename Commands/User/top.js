@@ -17,6 +17,7 @@ class Top {
   }
 
   _buildMessage(message, top, stat, game) {
+    let statFull = CONSTANTS.STAT_NAMES[stat]
     const embed = new Discord.RichEmbed()
     .setTitle(`Showing the top players in ${stat}`)
     .setColor(config.COLOR)
@@ -27,10 +28,13 @@ class Top {
       if(game == "minescape" && stat != "xp") {
         if(stat == "combat") {
           let combatLevel = BaseFunctions.calculateCombatLevel(player)
-          embed.addField(`${i+1} - ${player.user.name}`, 
+          embed.addField(`${i+1} - ${player.user.name}`,
           `**[${combatLevel}]** - ${BaseFunctions.formatNumber(Object.values(player).reduce((total, toAdd) => isNaN(toAdd) ? total : total + toAdd).toFixed(1))}`, true)
+        } else if (statFull.startsWith("course_")) {
+          embed.addField(`${i+1} - ${player.user.name}`,
+          `${BaseFunctions.formatTime(player.result.toFixed(1))}`, true)
         } else {
-          embed.addField(`${i+1} - ${player.user.name}`, 
+          embed.addField(`${i+1} - ${player.user.name}`,
           `**[${BaseFunctions.calculateLevel(player.result.toFixed(1))}]** - ${BaseFunctions.formatNumber(player.result.toFixed(1))}`, true)
         }
       } else {

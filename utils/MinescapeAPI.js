@@ -29,12 +29,12 @@ class MinescapeAPI extends EventEmitter { // Extends an event emitter cause if w
         if(error) return reject(error)
         if(!response.body) return reject("User not found")
         let body = JSON.parse(response.body)
-        
+
         if(body.error) {
           reject(response.body.errorMessage)
         } else {
           // We need to make this trimmed UUID a full UUID
-          // something like xxxx to x-x-x-x 
+          // something like xxxx to x-x-x-x
           resolve(
             body.id.slice(0, 8) + "-" +
             body.id.slice(8, 12) + "-" +
@@ -50,7 +50,7 @@ class MinescapeAPI extends EventEmitter { // Extends an event emitter cause if w
   /**
    * Get's the player's Gameslabs ID
    * @param {String} username The player's username to find
-   * @param {Number} pos The profile to find 
+   * @param {Number} pos The profile to find
    * @returns {Promise<String>} A string of the user's minescape ID
    */
   _getProfileID(username, pos = "default") {
@@ -106,7 +106,7 @@ class MinescapeAPI extends EventEmitter { // Extends an event emitter cause if w
       request(options, (error, response) => {
         if(error) return reject(error)
         let body = JSON.parse(response.body)
-        
+
         if(body.message){
           reject(body.message)
         } else {
@@ -125,7 +125,7 @@ class MinescapeAPI extends EventEmitter { // Extends an event emitter cause if w
    */
   getTop(stat, game){
     return new Promise((resolve, reject) => {
-      if(game != "minescape") {
+      if(game != "minescape" || Constants.STAT_NAMES[stat]) {
         if(!Constants.STAT_NAMES[stat]) return reject(`Couldn't find the stat ${stat}`)
         stat = Constants.STAT_NAMES[stat]
       }

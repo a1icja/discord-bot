@@ -54,7 +54,12 @@
     "longest life" : "longestLife",
     "total distance walked" : "totalDistanceWalked",
     "player kills" : "playerKills",
-    "lives" : "lives"
+    "lives" : "lives",
+    "al kharid" : "course_al_kharid",
+    "alkharid" : "course_al_kharid",
+    "falador" : "course_falador",
+    "ice caves" : "course_ice_caves",
+    "icecaves" : "course_ice_caves",
+    "lumbridge" : "course_lumbridge"
   }
 }
-
